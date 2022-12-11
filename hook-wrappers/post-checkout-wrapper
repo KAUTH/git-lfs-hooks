@@ -1,0 +1,17 @@
+#!/bin/sh
+
+
+# https://en.wikipedia.org/wiki/Dirname
+hook_wrappers_dir=$(dirname "$0")
+hooks_dir="$hook_wrappers_dir/../hooks"
+
+# These environment variables are exposed by pre-commit for hooks to consume 
+# source code: https://github.com/pre-commit/pre-commit/blob/main/pre_commit/commands/run.py#L375
+# docs: https://pre-commit.com/#pre-commit-for-switching-branches
+rev_before=$(printenv PRE_COMMIT_FROM_REF)
+ref_after=$(printenv PRE_COMMIT_TO_REF)
+is_branch_checkout=$(printenv PRE_COMMIT_CHECKOUT_TYPE)
+
+# Parameters given to post-checkout hook (https://git-scm.com/docs/githooks#_post_checkout)
+# and also need to be consumed by git-lfs' hook (https://github.com/git-lfs/git-lfs/blob/main/docs/man/git-lfs-post-checkout.adoc)
+$hooks_dir/post-checkout $rev_before $ref_after $is_branch_checkout

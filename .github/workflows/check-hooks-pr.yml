@@ -1,0 +1,40 @@
+name: Check Git LFS hooks and make a PR if necessary
+
+on:
+  schedule:
+    # Check everyday at 08:30
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '30 8 * * *'
+
+jobs:
+  git-lfs-hooks:
+    runs-on: ubuntu-latest
+    
+    steps:
+
+      - uses: actions/checkout@v3
+
+      - name: Check Git LFS for updates
+        run: |
+          ./scripts/update-from-git-lfs.sh
+      
+      - name: Run basic tests
+        run: |
+          make basic-tests
+
+      - name: Update the CHANGELOG.md
+        run: |
+          ./scripts/update-changelog.sh
+          
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "update: Update Git LFS hooks"
+          branch: "test/git-lfs-hooks-update"
+          delete-branch: true
+          title: "update: Update Git LFS hooks"
+          body: >
+            The following PR updates the GIT LFS hooks.
+          labels: automated-pr, update, pre-commit
