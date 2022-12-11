@@ -1,0 +1,6 @@
+- id: post-commit
+  name: Post commit
+  description: Checks postcommit
+  language: script
+  entry: hooks/post-commit
+  stages: [post-commit]
