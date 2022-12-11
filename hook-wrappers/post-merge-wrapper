@@ -1,0 +1,11 @@
+#!/bin/sh
+
+
+hook_wrappers_dir=$(dirname "$0")
+hooks_dir="$hook_wrappers_dir/../hooks"
+
+is_squash=$(printenv PRE_COMMIT_IS_SQUASH_MERGE)
+
+# Parameter given to post-merge hook (https://git-scm.com/docs/githooks#_post_merge)
+# and also needs to be consumed by git-lfs' hook (https://github.com/git-lfs/git-lfs/blob/main/docs/man/git-lfs-post-merge.adoc)
+$hooks_dir/post-merge $is_squash
