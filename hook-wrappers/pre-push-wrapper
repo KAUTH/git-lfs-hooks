@@ -1,0 +1,21 @@
+#!/bin/sh
+
+
+hook_wrappers_dir=$(dirname "$0")
+hooks_dir="$hook_wrappers_dir/../hooks"
+
+# These environment variables are exposed by pre-commit for hooks to consume 
+# docs: https://pre-commit.com/#pre-commit-during-push
+local_branch=$(printenv PRE_COMMIT_LOCAL_BRANCH)
+to_ref=$(printenv PRE_COMMIT_TO_REF)
+remote_branch=$(printenv PRE_COMMIT_REMOTE_BRANCH)
+from_ref=$(printenv PRE_COMMIT_FROM_REF)
+remote_name=$(printenv PRE_COMMIT_REMOTE_NAME)
+remote_url=$(printenv PRE_COMMIT_REMOTE_URL)
+
+stdin="$local_branch $to_ref $remote_branch $from_ref"
+
+# 2 parameters are given to the pre-push hook (https://git-scm.com/docs/githooks#_pre_push)
+# and 4 parameters to stdin
+# also they need to be consumed by git-lfs' hook (https://github.com/git-lfs/git-lfs/blob/main/docs/man/git-lfs-pre-push.adoc)
+echo $stdin | $hooks_dir/pre-push $remote_name $remote_url

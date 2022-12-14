@@ -3,7 +3,7 @@ name: Check Git LFS hooks and make a PR if necessary
 on:
   push:
     branches:
-      - 'test-github-actions'
+      - 'test-github-actions---'
 
 jobs:
   git-lfs-hooks:
@@ -11,42 +11,23 @@ jobs:
     
     steps:
 
-      - uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+      - uses: actions/checkout@v3
 
-      - name: Install git-lfs
+      - name: Check Git LFS for updates
         run: |
-          curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+          ./scripts/update-from-git-lfs.sh
       
-      - name: Check if git-lfs is installed
-        if: always()
+      - name: Run basic tests
         run: |
-          mkdir tmp
-          cd tmp
-          git init
-          git lfs update -m
-          git lfs --version
-          git lfs install
-          ls -a
-      
-      - name: print pwd before checking out
-        if: always()
-        run: |
-          pwd
-          ls
+          make basic-tests
 
-      # - uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
-
-      - name: print pwd before after out
+      - name: Update the CHANGELOG.md
         run: |
-          pwd
-          ls
-      
-      - name: Copy files to hooks dir
-        run: |
-          cp -a tmp/.git/hooks/. hooks/
-      
+          ./scripts/update-changelog.sh
+          
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@2b011faafdcbc9ceb11414d64d0573f37c774b04
+        id: cpr
+        uses: peter-evans/create-pull-request@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "update: Update Git LFS hooks"
@@ -55,4 +36,4 @@ jobs:
           title: "update: Update Git LFS hooks"
           body: >
             The following PR updates the GIT LFS hooks.
-          labels: automated pr, pre-commit
+          labels: automated-pr, update, pre-commit

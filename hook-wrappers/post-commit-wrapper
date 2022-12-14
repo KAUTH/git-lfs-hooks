@@ -1,0 +1,9 @@
+#!/bin/sh
+
+
+hook_wrappers_dir=$(dirname "$0")
+hooks_dir="$hook_wrappers_dir/../hooks"
+
+# No parameters are given to post-commit hook (https://git-scm.com/docs/githooks#_post_commit)
+# and similarly for git-lfs' hook (https://github.com/git-lfs/git-lfs/blob/main/docs/man/git-lfs-post-commit.adoc)
+$hooks_dir/post-commit

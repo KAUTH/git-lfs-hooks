@@ -7,7 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.0] - 2014-05-31
 
-## [0.0.1] - 2014-05-31
+### Added
 
-### Changed
+Inital project setup:
+- README.md
+- CHANGELOG.md
+- LICENSE
+- .pre-commit-hooks.yaml configuration
+- GitHub workflow for automated PRs, version tagging, testing
+
+This version does not have any hooks.

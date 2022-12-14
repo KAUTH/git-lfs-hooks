@@ -1,6 +1,28 @@
-- id: post-commit
-  name: Post commit
-  description: Checks postcommit
+- id: post-checkout
+  name: git-lfs post-checkout hook
   language: script
-  entry: hooks/post-commit
+  entry: hook-wrappers/post-checkout-wrapper
+  # Since post-checkout doesn't operate on files, any hooks must set always_run
+  always_run: true
+  stages: [post-checkout]
+
+- id: post-commit
+  name: git-lfs post-commit hook
+  language: script
+  entry: hook-wrappers/post-commit-wrapper
+  # Since post-commit does not operate on files, any hooks must set always_run
+  always_run: true
   stages: [post-commit]
+
+- id: post-merge
+  name: git-lfs post-merge hook
+  language: script
+  entry: hook-wrappers/post-merge-wrapper
+  always_run: true
+  stages: [post-merge]
+
+- id: pre-push
+  name: git-lfs pre-push hook
+  language: script
+  entry: hook-wrappers/pre-push-wrapper
+  stages: [push]

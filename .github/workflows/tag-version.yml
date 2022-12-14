@@ -1,0 +1,30 @@
+name: Tag the new version of the hook
+
+on:
+  push:
+    branches:
+      - 'test-github-actions'
+
+jobs:
+  tag-version:
+    runs-on: ubuntu-latest
+    
+    steps:
+
+      - uses: actions/checkout@v3
+        with:
+            fetch-depth: 2
+      
+      # Checking again on merge and before tagging that tests pass
+      # - name: Run basic tests
+      #   run: |
+      #     make basic-tests
+
+      - name: Check if .version has changed
+        run: |
+          ./scripts/check-version.sh
+      
+      - name: Tag the commit with the new version
+        run: |
+          git tag "v$(cat .version)"
+          git push origin --tags
