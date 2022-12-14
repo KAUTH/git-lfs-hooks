@@ -13,37 +13,9 @@ jobs:
 
       - uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
 
-      - name: Install git-lfs
+      - name: Check Git LFS for updates
         run: |
-          curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
-      
-      - name: Check if git-lfs is installed
-        if: always()
-        run: |
-          mkdir tmp
-          cd tmp
-          git init
-          git lfs update -m
-          git lfs --version
-          git lfs install
-          ls -a
-      
-      - name: print pwd before checking out
-        if: always()
-        run: |
-          pwd
-          ls
-
-      # - uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
-
-      - name: print pwd before after out
-        run: |
-          pwd
-          ls
-      
-      - name: Copy files to hooks dir
-        run: |
-          cp -a tmp/.git/hooks/. hooks/
+          ./update-from-git-lfs.sh
       
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@2b011faafdcbc9ceb11414d64d0573f37c774b04
