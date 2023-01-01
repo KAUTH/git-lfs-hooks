@@ -3,7 +3,7 @@ name: Tag the new version of the hook
 on:
   push:
     branches:
-      - 'master'
+      - 'main'
 
 jobs:
   tag-version:
