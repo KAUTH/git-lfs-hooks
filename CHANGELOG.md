@@ -11,10 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Added new hook(s) from Git LFS (hooks/post-checkout, hooks/post-commit, hooks/post-merge, hooks/pre-push)
-- ATTENTION: We need to update the pre-commit-hooks.yaml, README.md files and the tests before releasing.
-As it is now, the tests should break when trying to merge this PR.
-
+- Added new hooks from Git LFS (hooks/post-checkout, hooks/post-commit, hooks/post-merge, hooks/pre-push)
 
 ## [0.0.0] - 2022-12-31
 
