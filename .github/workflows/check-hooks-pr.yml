@@ -17,10 +17,6 @@ jobs:
       - name: Check Git LFS for updates
         run: |
           ./scripts/update-from-git-lfs.sh
-      
-      - name: Run basic tests
-        run: |
-          make basic-tests
 
       - name: Update the CHANGELOG.md
         run: |

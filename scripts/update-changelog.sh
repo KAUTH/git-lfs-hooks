@@ -22,8 +22,8 @@ if [[ -n $UNTRACKED_HOOKS ]]; then
 \n### Added
 
 - Added new hook(s) from Git LFS ($SEP_UNTRACKED_HOOKS)
-- ATTENTION: We need to update the pre-commit-hooks.yaml, README.md files and the tests before releasing.
-As it is now, the tests should break when trying to merge this PR.\n
+- ATTENTION: We need to update the pre-commit-hooks.yaml, README.md, hook-wrappers files and the tests before releasing.
+As it is now, the tests should break when submitting a PR.\n
 EOF
 )
 fi
@@ -54,8 +54,8 @@ if [[ -n $REMOVED_HOOKS ]]; then
 \n### Removed
 
 - Removed hook(s) from Git LFS ($SEP_REMOVED_HOOKS)
-- ATTENTION: We need to update the pre-commit-hooks.yaml, README.md files and the tests before releasing.
-As it is now, the tests should break when trying to merge this PR.
+- ATTENTION: We need to update the pre-commit-hooks.yaml, README.md, hook-wrappers files and the tests before releasing.
+As it is now, the tests should break when submitting a PR.\n
 EOF
 )
 fi

@@ -20,7 +20,9 @@ if dpkg --compare-versions $LFS_LATEST_VERSION eq $LFS_CURRENT_VERSION; then
     # there are no changes to its Git hooks (this makes also
     # the workflow's running durations shorter when there are no updates)
     echo "git-lfs version is unchanged ($LFS_CURRENT_VERSION). Exiting..."
-    exit 0
+    # TODO: Handle exit codes so that the GH action doesn't show as failed, but
+    # prints a message for example
+    exit 1
 fi
 
 if dpkg --compare-versions $LFS_LATEST_VERSION lt $LFS_CURRENT_VERSION; then
