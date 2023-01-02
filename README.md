@@ -26,7 +26,7 @@ Add the following to your `.pre-commit-config.yaml` file:
 - Since running `git lfs install` typically installs all related hooks, we also
 advise using all of them in your `pre-commit` configuration file.
 
-- The version in [.version](https://github.com/KAUTH/precommit-mirrors-git-lfs-hooks/blob/main/git-lfs-hooks-update/.version)
+- The version in [.version](https://github.com/KAUTH/precommit-mirrors-git-lfs-hooks/blob/main/.version)
 corresponds to the mirrored Git LFS version.
 
 ## Why
