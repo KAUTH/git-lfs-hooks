@@ -37,7 +37,7 @@ Listing the command documentation of the Git LFS hooks' implementation:
 - https://github.com/git-lfs/git-lfs/blob/main/docs/man/git-lfs-post-checkout.adoc
 - https://github.com/git-lfs/git-lfs/blob/main/docs/man/git-lfs-post-commit.adoc
 - https://github.com/git-lfs/git-lfs/blob/main/docs/man/git-lfs-post-merge.adoc
-- https://github.com/git-lfs/git-lfs/blob/main/docs/man/git-lfs-pre-
+- https://github.com/git-lfs/git-lfs/blob/main/docs/man/git-lfs-pre-push.adoc
 
 If `pre-commit` hooks (the same type as the ones used by Git LFS) are being used in a repository
 and we install Git LFS afterward, the latter tool will not be able to automatically install
