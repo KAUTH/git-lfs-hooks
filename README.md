@@ -1,7 +1,7 @@
-![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/KAUTH/precommit-mirrors-git-lfs-hooks)
-[![GitHub license](https://img.shields.io/github/license/KAUTH/precommit-mirrors-git-lfs-hooks)](https://github.com/KAUTH/precommit-mirrors-git-lfs-hooks/blob/main/LICENSE)
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/KAUTH/git-lfs-hooks-mirror)
+[![GitHub license](https://img.shields.io/github/license/KAUTH/git-lfs-hooks-mirror)](https://github.com/KAUTH/git-lfs-hooks-mirror/blob/main/LICENSE)
 
-# precommit-mirrors-git-lfs-hooks
+# git-lfs-hooks-mirror
 Mirror of Git LFS hooks for pre-commit
 
 ## General
@@ -13,7 +13,7 @@ Git Large File Storage (LFS) page: https://git-lfs.github.com
 Add the following to your `.pre-commit-config.yaml` file:
 
 ```yaml
--   repo: https://github.com/KAUTH/precommit-mirrors-git-lfs-hooks
+-   repo: https://github.com/KAUTH/git-lfs-hooks-mirror
     rev: ''  # Use the SHA or tag that you want to point to
     hooks:
     -   id: post-checkout
@@ -26,7 +26,7 @@ Add the following to your `.pre-commit-config.yaml` file:
 - Since running `git lfs install` typically installs all related hooks, we also
 advise using all of them in your `pre-commit` configuration file.
 
-- The version in [.version](https://github.com/KAUTH/precommit-mirrors-git-lfs-hooks/blob/main/.version)
+- The version in [.version](https://github.com/KAUTH/git-lfs-hooks-mirror/blob/main/.version)
 corresponds to the mirrored Git LFS version.
 
 ## Why
@@ -55,4 +55,4 @@ In any case, these hooks can be used to avoid having the Git LFS hooks in migrat
 mode and can give a holistic view of the available hooks from the `.pre-commit-config.yaml` file.
 
 ## License
-[MIT License](https://github.com/KAUTH/precommit-mirrors-git-lfs-hooks/blob/main/LICENSE)
+[MIT License](https://github.com/KAUTH/git-lfs-hooks-mirror/blob/main/LICENSE)
