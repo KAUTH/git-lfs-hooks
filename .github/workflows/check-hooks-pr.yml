@@ -15,8 +15,16 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Check Git LFS for updates
+        id: check-git-lfs
         run: |
           ./scripts/update-from-git-lfs.sh
+      
+      - name: Exit gracefully
+        if: ${{ failure() }}
+        run: |
+          echo "Exiting gracefully after previous step failed." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY # this is a blank line
+          echo "${{ steps.check-git-lfs.outputs.stdout }}" >> $GITHUB_STEP_SUMMARY
 
       - name: Update the CHANGELOG.md
         run: |

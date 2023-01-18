@@ -21,8 +21,16 @@ jobs:
           make basic-tests
 
       - name: Check if .version has changed
+        id: check-version
         run: |
           ./scripts/check-version.sh
+      
+      - name: Exit gracefully
+        if: ${{ failure() }}
+        run: |
+          echo "Exiting gracefully after previous step failed." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY # this is a blank line
+          echo "${{ steps.check-version.outputs.stdout }}" >> $GITHUB_STEP_SUMMARY
       
       - name: Tag the commit with the new version
         run: |
