@@ -9,6 +9,7 @@ on:
 jobs:
   git-lfs-hooks:
     runs-on: ubuntu-latest
+    continue-on-error: true
     
     steps:
 
@@ -17,18 +18,18 @@ jobs:
       - name: Check Git LFS for updates
         id: check-git-lfs
         run: |
-          ./scripts/update-from-git-lfs.sh
+          ./.github/workflows/scripts/update-from-git-lfs.sh
       
       - name: Exit gracefully
         if: ${{ failure() }}
         run: |
-          echo "Exiting gracefully after previous step failed." >> $GITHUB_STEP_SUMMARY
+          echo "Exiting gracefully after previous step failed (git-lfs does not have any updates)." >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY # this is a blank line
           echo "${{ steps.check-git-lfs.outputs.stdout }}" >> $GITHUB_STEP_SUMMARY
 
       - name: Update the CHANGELOG.md
         run: |
-          ./scripts/update-changelog.sh
+          ./.github/workflows/scripts/update-changelog.sh
           
       - name: Create Pull Request
         id: cpr

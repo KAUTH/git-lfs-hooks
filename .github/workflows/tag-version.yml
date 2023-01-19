@@ -6,29 +6,39 @@ on:
       - 'main'
 
 jobs:
-  tag-version:
+  tests:
     runs-on: ubuntu-latest
     
     steps:
 
       - uses: actions/checkout@v3
-        with:
-            fetch-depth: 2
       
       # Checking again on merge and before tagging that tests pass
       - name: Run basic tests
         run: |
           make basic-tests
+  
+  tag-version:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    needs: tests
+    
+    steps:
+
+      - uses: actions/checkout@v3
+        # For the `git diff` to work (allows you to switch to the previous commit of the repository)
+        with:
+            fetch-depth: 2
 
       - name: Check if .version has changed
         id: check-version
         run: |
-          ./scripts/check-version.sh
+          ./.github/workflows/scripts/check-version.sh
       
       - name: Exit gracefully
         if: ${{ failure() }}
         run: |
-          echo "Exiting gracefully after previous step failed." >> $GITHUB_STEP_SUMMARY
+          echo "Exiting gracefully after previous step failed (.version hasn't changed)." >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY # this is a blank line
           echo "${{ steps.check-version.outputs.stdout }}" >> $GITHUB_STEP_SUMMARY
       
