@@ -1,7 +1,7 @@
 - id: post-checkout
   name: git-lfs post-checkout hook
-  language: script
-  entry: hook-wrappers/post-checkout-wrapper
+  language: python
+  entry: git-lfs-hooks post-checkout
   # Since post-checkout doesn't operate on files, any hooks must set always_run
   always_run: true
   pass_filenames: false
@@ -9,8 +9,8 @@
 
 - id: post-commit
   name: git-lfs post-commit hook
-  language: script
-  entry: hook-wrappers/post-commit-wrapper
+  language: python
+  entry: git-lfs-hooks post-commit
   # Since post-commit does not operate on files, any hooks must set always_run
   always_run: true
   pass_filenames: false
@@ -18,16 +18,16 @@
 
 - id: post-merge
   name: git-lfs post-merge hook
-  language: script
-  entry: hook-wrappers/post-merge-wrapper
+  language: python
+  entry: git-lfs-hooks post-merge
   always_run: true
   pass_filenames: false
   stages: [post-merge]
 
 - id: pre-push
   name: git-lfs pre-push hook
-  language: script
-  entry: hook-wrappers/pre-push-wrapper
+  language: python
+  entry: git-lfs-hooks pre-push
   always_run: true
   pass_filenames: false
   stages: [push]

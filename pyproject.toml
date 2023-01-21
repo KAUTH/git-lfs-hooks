@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "git-lfs-hooks"
+version = "0.0.0"
+description = "Git LFS hooks for pre-commit"
+authors = ["Konstantinos Papadopoulos <konpap1996@yahoo.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "git_lfs_hooks"}]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+[tool.poetry.scripts]
+git-lfs-hooks = 'git_lfs_hooks.cli:cli'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

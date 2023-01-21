@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
+import unittest
 from os import listdir
 from os.path import isfile, join
-import unittest
 
 
 class TestBasics(unittest.TestCase):
@@ -13,6 +13,7 @@ class TestBasics(unittest.TestCase):
         If a hook is added or removed we need to update the
         .pre-commit-hooks.yaml configuration file.
         """
+
         expected_hook_files = {
             "post-checkout", "post-commit", "post-merge", "pre-push"
         }
@@ -37,6 +38,7 @@ class TestBasics(unittest.TestCase):
         If a hook is added or removed we need to update the existing
         hook wrappers.
         """
+
         expected_hook_files = {
             "post-checkout", "post-commit", "post-merge", "pre-push"
         }
