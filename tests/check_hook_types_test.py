@@ -18,7 +18,7 @@ class TestBasics(unittest.TestCase):
             "post-checkout", "post-commit", "post-merge", "pre-push"
         }
 
-        hooks_path = "hooks/"
+        hooks_path = "git_lfs_hooks/hooks/"
         hook_files = {
             f for f in listdir(hooks_path) if isfile(join(hooks_path, f))
         }
@@ -46,7 +46,7 @@ class TestBasics(unittest.TestCase):
             f"{hook}-wrapper" for hook in expected_hook_files
         }
 
-        wrappers_path = "hook-wrappers/"
+        wrappers_path = "git_lfs_hooks/hook-wrappers/"
         wrapper_files = {
             f for f in listdir(wrappers_path) if isfile(join(wrappers_path, f))
         }
